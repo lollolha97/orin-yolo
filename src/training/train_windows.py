@@ -29,18 +29,18 @@ def check_cuda():
     print()
     return device
 
-def train_construction_ppe(
+def train_helmet_detection(
     epochs=100,
     batch=32,
     imgsz=640,
     model_size="n"  # n, s, m, l, x
 ):
-    """Construction-PPE 데이터셋 학습"""
+    """헬멧 착용 검증 데이터셋 학습 (SHWD)"""
 
     device = check_cuda()
 
     print("=" * 60)
-    print("🏋️ Construction-PPE 학습 시작")
+    print("🏋️ 헬멧 착용 검증 학습 시작 (SHWD)")
     print("=" * 60)
     print(f"모델: yolo11{model_size}.pt")
     print(f"Epochs: {epochs}")
@@ -54,13 +54,13 @@ def train_construction_ppe(
 
     # 학습 실행
     results = model.train(
-        data="construction-ppe.yaml",
+        data="datasets/helmet-detection/data.yaml",  # SHWD dataset: helmet, no_helmet
         epochs=epochs,
         imgsz=imgsz,
         batch=batch,
         device=device,
-        project="runs/construction-ppe",
-        name=f"windows_yolo11{model_size}_e{epochs}",
+        project="runs/helmet-detection",
+        name=f"windows_yolo11{model_size}_shwd_e{epochs}",
 
         # 최적화 설정
         patience=50,        # Early stopping
@@ -88,7 +88,7 @@ def train_construction_ppe(
 
 if __name__ == "__main__":
     # RTX 4060에 최적화된 설정
-    train_construction_ppe(
+    train_helmet_detection(
         epochs=100,
         batch=32,      # RTX 4060 8GB → batch 32 권장
         imgsz=640,

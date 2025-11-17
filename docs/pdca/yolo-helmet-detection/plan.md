@@ -253,8 +253,9 @@ YOLO Framework:
 - [PyTorch Quantization Tutorial](https://pytorch.org/tutorials/advanced/static_quantization_tutorial.html)
 
 ### 데이터셋
-- [Roboflow Universe - Hard Hat Detection](https://universe.roboflow.com/)
-- [Kaggle - Construction Site Safety](https://www.kaggle.com/)
+- [Safety-Helmet-Wearing-Dataset (SHWD)](https://github.com/njvisionpower/Safety-Helmet-Wearing-Dataset) - 최종 선정 ⭐
+- [Roboflow Universe - Hard Hat Detection](https://universe.roboflow.com/) - 참고용
+- [Kaggle - Construction Site Safety](https://www.kaggle.com/) - 참고용
 
 ### 참고 논문
 - "YOLOv8: An Improved Version of YOLO" (Ultralytics, 2023)

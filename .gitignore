@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Claude Code
+.claude/settings.local.json
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# YOLO / Ultralytics
+runs/
+*.pt
+*.pth
+*.onnx
+*.engine
+*.trt
+*.torchscript
+
+# Datasets (large files)
+datasets/
+!datasets/.gitkeep
+!datasets/README.md
+*.zip
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+label_visualization.jpg
+test_output/

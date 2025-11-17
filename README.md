@@ -1,4 +1,5 @@
 # Jetson Orin Nano YOLO 헬멧 착용 검증 시스템
+> 데이터셋 다운로드: https://drive.google.com/file/d/1qWm7rrwvjAWs1slymbrLaCf7Q-wnGLEX/view
 
 **목표**: 작업 현장에서 작업자의 헬멧 착용 여부를 실시간으로 검증하는 Edge AI 시스템 개발
 

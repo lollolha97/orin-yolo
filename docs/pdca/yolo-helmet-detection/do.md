@@ -267,32 +267,36 @@ model.overrides['iou'] = 0.45   # NMS IoU threshold
 
 ---
 
-### 최종 선정 전략 (권장)
+### 최종 선정 데이터셋: Safety-Helmet-Wearing-Dataset (SHWD) ⭐
 
-#### 1단계: Ultralytics Construction-PPE 베이스라인
-```python
-# 공식 데이터셋으로 시작
+**결정일**: 2025-11-18
+**출처**: https://github.com/njvisionpower/Safety-Helmet-Wearing-Dataset
+**라이선스**: MIT License
+
+#### 데이터셋 정보
+- **이미지**: 7,581장
+- **클래스**: 2개 (helmet, no_helmet)
+- **탐지 방식**: Person-level detection
+- **원본 형식**: Pascal VOC → YOLO 변환 필요
+
+#### 선정 이유
+1. **대규모 데이터**: Construction-PPE 대비 5배
+2. **Person-level**: 목적에 정확히 일치
+3. **MIT 라이선스**: 상업적 사용 가능
+
+#### 변환 및 학습
+```bash
+# 변환
+python scripts/convert_voc_to_yolo.py
+
+# 학습
 model = YOLO("yolo11n.pt")
-model.train(data="construction-ppe.yaml", epochs=100, imgsz=640)
+model.train(data="datasets/helmet-detection/data.yaml", epochs=100)
 ```
-**이유**:
-- 공식 지원 → 문서화 완벽
-- 안정적인 품질
-- 작은 모델(yolo11n) → Jetson에 적합
 
-#### 2단계: 성능 평가 및 비교
-- Ultralytics 모델 성능 측정
-- Roboflow 모델 중 1-2개 테스트
-- mAP, FPS, 메모리 비교
+---
 
-#### 3단계: Fine-tuning (필요 시)
-- 작업 환경 데이터 100장 수집
-- 베이스라인 모델에 Fine-tuning
-- 성능 개선 확인
-
-#### 4단계: 최적화 적용
-- 선정된 모델에 양자화, TensorRT 적용
-- Jetson 배포
+### ~~이전 전략 (Construction-PPE)~~ [변경됨]
 
 ---
 
@@ -355,6 +359,32 @@ Epoch 2/N: loss=X.XX, mAP=X.XX
 - [Personal protective equipment detection using YOLOv8](https://www.tandfonline.com/doi/full/10.1080/23311916.2024.2333209)
 - [An improved YOLOv8 safety helmet wearing detection network](https://www.nature.com/articles/s41598-024-68446-z)
 - [Detection Method for Safety Helmet Wearing on Construction Sites](https://www.mdpi.com/2075-5309/15/3/354)
+
+### 추가 데이터셋 소스
+
+#### 1. Roboflow Universe (추천 ⭐)
+**장점**: YOLO 형식 바로 다운로드, 다양한 프로젝트
+
+- **메인 검색**: https://universe.roboflow.com/search?q=helmet+detection
+- **Hard Hat Workers (2,801 images)**: https://universe.roboflow.com/roboflow-universe-projects/hard-hat-workers
+- **Construction Site Safety (1,000 images)**: https://universe.roboflow.com/roboflow-100/construction-site-safety
+- **PPE Detection (500+ images)**: https://universe.roboflow.com/workspace-gxbn1/ppe-detection-vhss8
+
+#### 2. Kaggle
+- **Hard Hat Detection (5,000 images)**: https://www.kaggle.com/datasets/andrewmvd/hard-hat-detection
+- **Safety Helmet Detection (7,581 images)**: https://www.kaggle.com/datasets/vodan37/yolo-helmet
+
+#### 3. Hugging Face
+- **keremberke PPE Detection**: https://huggingface.co/datasets/keremberke/protective-equipment-detection-object-detection
+
+#### 4. GitHub
+- **GDUT-HWD (2,044 images)**: https://github.com/wujixiu/helmet-detection
+- **SHWD Dataset (7,581 images)**: https://github.com/njvisionpower/Safety-Helmet-Wearing-Dataset
+
+**⚠️ 주의사항**:
+- 데이터셋 범위 확인 필요 (Person-level vs Object-level detection)
+- Construction-PPE는 Person-level (사람 전체), 대부분 데이터셋은 Object-level (헬멧만)
+- 혼합 사용 시 라벨링 일관성 문제 발생 가능
 
 ---
 
