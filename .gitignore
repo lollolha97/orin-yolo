@@ -36,6 +36,10 @@ runs/
 *.trt
 *.torchscript
 
+# Models (공유할 모델만 예외 처리)
+!models/*.pt
+!models/*.onnx
+
 # Datasets (large files)
 datasets/
 !datasets/.gitkeep
