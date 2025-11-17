@@ -1,6 +1,15 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(git clean:*)",
+      "Bash(git pull:*)",
+      "Bash(dir:*)",
+      "Bash(git add:*)",
+      "Bash(git mv:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "linear-server"
-  ],
-  "enableAllProjectMcpServers": true
+  ]
 }

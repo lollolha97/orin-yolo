@@ -209,8 +209,8 @@ names:
 
 if __name__ == "__main__":
     # 경로 설정
-    BASE_DIR = Path.home() / "Developments" / "orin-yolo"
-    VOC_DIR = BASE_DIR / "datasets" / "SHWD" / "VOC2028"  # VOC2028 폴더 추가
+    BASE_DIR = Path.home() / "Developments" / "mirae-city" / "orin-yolo"
+    VOC_DIR = BASE_DIR / "datasets" / "SHWD" / "VOC2028"
     OUTPUT_DIR = BASE_DIR / "datasets" / "helmet-detection"
 
     print("="*60)

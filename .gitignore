@@ -50,3 +50,4 @@ datasets/
 *.bak
 label_visualization.jpg
 test_output/
+orin-yolo/

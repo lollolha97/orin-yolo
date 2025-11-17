@@ -6,6 +6,7 @@ Windows RTX 4060 테스트 학습 스크립트 (1 epoch)
 
 from ultralytics import YOLO
 import torch
+from pathlib import Path
 
 def check_cuda():
     """CUDA 사용 가능 여부 확인"""
@@ -34,6 +35,10 @@ def test_train_1epoch():
 
     device = check_cuda()
 
+    # 프로젝트 루트 경로 계산
+    PROJECT_ROOT = Path(__file__).resolve().parents[2]  # src/training/ → orin-yolo/
+    DATA_YAML = PROJECT_ROOT / "datasets" / "helmet-detection" / "data.yaml"
+
     print("=" * 60)
     print("🧪 테스트 학습 (1 epoch)")
     print("=" * 60)
@@ -43,6 +48,7 @@ def test_train_1epoch():
     print("Batch: 16")
     print("이미지 크기: 640")
     print(f"디바이스: {device}")
+    print(f"데이터: {DATA_YAML}")
     print()
 
     # 모델 로드
@@ -50,7 +56,7 @@ def test_train_1epoch():
 
     # 테스트 학습 실행
     results = model.train(
-        data="datasets/helmet-detection/data.yaml",
+        data=str(DATA_YAML),
         epochs=1,
         imgsz=640,
         batch=16,
